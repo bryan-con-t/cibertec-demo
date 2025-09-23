@@ -79,6 +79,12 @@ class AccesoActivity : AppCompatActivity() {
             Toast.makeText(this, "Validación correcta. Procesando login...", Toast.LENGTH_LONG).show()
 
             var usuarioEncontrado : Usuario ?= null
+//            for (i in 0 until listaUsuarios.size) {
+//                if (listaUsuarios[i].correo == correo + "@cibertec.edu.pe" && listaUsuarios[i].clave == clave) {
+//                    usuarioEncontrado = listaUsuarios[i]
+//                    break
+//                }
+//            }
             for (u in listaUsuarios) {
                 if (u.correo == correo + "@cibertec.edu.pe" && u.clave == clave) {
                     usuarioEncontrado = u
