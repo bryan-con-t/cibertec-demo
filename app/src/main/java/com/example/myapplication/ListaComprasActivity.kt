@@ -7,6 +7,7 @@ import android.widget.EditText
 import android.widget.ListView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -57,10 +58,32 @@ class ListaComprasActivity : AppCompatActivity() {
 
         // Evento: clic largo para eliminar producto
         lvCompras.setOnItemLongClickListener { _, _, position, _ ->
-            listaCompras.removeAt(position)
-            adapter.notifyDataSetChanged()
-            Toast.makeText(this, "Producto eliminado", Toast.LENGTH_SHORT).show()
-            true
+            val producto = listaCompras[position]
+
+            // Opciones para el menú
+            val opciones = arrayOf("Ver detalles", "Eliminar", "Marcar como comprado")
+
+            AlertDialog.Builder(this)
+                .setTitle("Opciones para $producto")
+                .setItems(opciones) { _, which ->
+                    when (which) {
+                        0 -> {
+                            Toast.makeText(this, "Detalles de $producto", Toast.LENGTH_SHORT).show()
+                        }
+                        1 -> {
+                            listaCompras.removeAt(position)
+                            adapter.notifyDataSetChanged()
+                            Toast.makeText(this, "$producto eliminado", Toast.LENGTH_SHORT).show()
+                        }
+                        2 -> {
+                            Toast.makeText(this, "$producto marcado como comprado", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+                .setNegativeButton("Cancelar", null)
+                .show()
+
+            true // Para indicar que el clic largo fue manejado
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
