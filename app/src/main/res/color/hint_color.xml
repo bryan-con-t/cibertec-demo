@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Cuando hay error -->
+    <item android:color="@color/naranja1" android:state_active="true" android:state_enabled="true" android:state_focused="true"/>
+    <item android:color="@color/naranja1" android:state_active="true" android:state_enabled="true"/>
+
+    <!-- Cuando está en focus -->
+    <item android:color="@color/azul2" android:state_focused="true" android:state_enabled="true"/>
+
+    <!-- Deshabilitado -->
+    <item android:color="@color/plomo" android:state_enabled="false"/>
+
+    <!-- Estado normal -->
+    <item android:color="@color/naranja1"/>
+</selector>

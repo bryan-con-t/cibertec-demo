@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.net.toUri
+import com.example.myapplication.entity.Usuario
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
@@ -48,9 +49,16 @@ class AccesoActivity : AppCompatActivity() {
             cambioActivity(RegistroActivity::class.java)
         }
 
+        // Hace que el teclado del dispositivo no tape a los Views (EditText, TextInputEditText, etc)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val imeInsets = insets.getInsets(WindowInsetsCompat.Type.ime())
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            v.setPadding(
+                systemBars.left,
+                systemBars.top,
+                systemBars.right,
+                maxOf(systemBars.bottom, imeInsets.bottom)
+            )
             insets
         }
     }
@@ -78,7 +86,7 @@ class AccesoActivity : AppCompatActivity() {
             //Si pasa las validaciones
             Toast.makeText(this, "Validación correcta. Procesando login...", Toast.LENGTH_LONG).show()
 
-            var usuarioEncontrado : Usuario ?= null
+            var usuarioEncontrado : Usuario?= null
 //            for (i in 0 until listaUsuarios.size) {
 //                if (listaUsuarios[i].correo == correo + "@cibertec.edu.pe" && listaUsuarios[i].clave == clave) {
 //                    usuarioEncontrado = listaUsuarios[i]

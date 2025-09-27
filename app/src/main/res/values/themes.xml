@@ -1,9 +1,65 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.MyApplication" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="colorPrimary">@color/morado3</item>
+        <item name="colorSecondary">@color/amarillo2</item>
+        <item name="colorPrimaryDark">@color/morado1</item>
+        <item name="colorAccent">@color/azul2</item>
+        <item name="textInputStyle">@style/til</item>
     </style>
 
     <style name="Theme.MyApplication" parent="Base.Theme.MyApplication" />
+
+    <style name="input">
+        <item name="android:fontFamily">@font/poppins_light</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/azul2</item>
+    </style>
+
+    <style name="output">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/azul2</item>
+    </style>
+
+    <style name="titulo">
+        <item name="android:fontFamily">@font/poppins_bold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/azul2</item>
+    </style>
+
+    <style name="subtitulo">
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/azul2</item>
+    </style>
+
+    <style name="boton">
+        <item name="strokeWidth">2dp</item>
+        <item name="strokeColor">@color/azul2</item>
+        <item name="backgroundTint">@color/amarillo2</item>
+        <item name="android:textColor">@color/azul2</item>
+        <item name="fontFamily">@font/poppins_semi_bold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="til" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <!-- Ajusta los radios de esquina -->
+        <item name="shapeAppearance">@style/TextInput</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeColor">@color/azul2</item>
+        <item name="boxStrokeErrorColor">@color/naranja1</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+        <item name="hintTextColor">@color/hint_color</item>
+    </style>
+
+    <style name="TextInput" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
 </resources>

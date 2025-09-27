@@ -1,69 +1,256 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".RegistroActivity">
 
-    <TextView
-        android:id="@+id/tvTitulo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Registro de nuevo usuario"
-        android:layout_marginTop="16dp"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"/>
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-    <RadioGroup
-        android:id="@+id/rgSexo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="16dp"
-        android:layout_marginHorizontal="16dp"
-        android:layout_below="@id/tvTitulo">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
 
-        <RadioButton
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:text="Masculino"
-            android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/tvTitulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Registro de nuevo usuario"
+                android:layout_marginTop="16dp"
+                style="@style/titulo"/>
 
-        <RadioButton
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:text="Femenino"
-            android:layout_weight="1"/>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilDni"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="DNI"
+                android:layout_marginTop="16dp"
+                android:layout_marginHorizontal="16dp"
+                app:counterMaxLength="8"
+                app:counterEnabled="true">
 
-        <RadioButton
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:text="Prefiero no decirlo"
-            android:layout_weight="1"/>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tietDni"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:inputType="number"
+                    android:maxLength="8"
+                    style="@style/input"/>
 
-    </RadioGroup>
+            </com.google.android.material.textfield.TextInputLayout>
 
-    <CheckBox
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Acepto los términos y condiciones y la política de privacidad de Cibertec"
-        android:layout_below="@id/rgSexo"
-        android:layout_marginHorizontal="16dp"/>
+            <LinearLayout
+                android:id="@+id/llayApellidos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginHorizontal="16dp"
+                android:weightSum="2">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="24dp"
-        android:src="@drawable/ic_guardar"
-        app:tint="@color/white"
-        app:backgroundTint="@color/design_default_color_primary" />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilApellidoPaterno"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Apellido paterno"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp">
 
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tietApellidoPaterno"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:inputType="textCapWords"
+                        android:nextFocusDown="@id/tietApellidoMaterno"
+                        style="@style/input"/>
 
-</RelativeLayout>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilApellidoMaterno"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Apellido materno"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tietApellidoMaterno"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:inputType="textCapWords"
+                        style="@style/input"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilNombres"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nombres"
+                android:layout_marginTop="16dp"
+                android:layout_marginHorizontal="16dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tietNombres"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:inputType="textCapWords"
+                    style="@style/input"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilCelular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Celular"
+                android:layout_marginTop="16dp"
+                android:layout_marginHorizontal="16dp"
+                app:counterMaxLength="9"
+                app:counterEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tietCelular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:inputType="phone"
+                    android:maxLength="9"
+                    style="@style/input"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tvSexo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sexo:"
+                android:paddingHorizontal="8dp"
+                android:layout_marginHorizontal="16dp"
+                style="@style/output"/>
+
+            <RadioGroup
+                android:id="@+id/rgSexo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginHorizontal="16dp">
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/rbtMasculino"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="Masculino"
+                    android:layout_weight="1"
+                    android:button="@drawable/radio"
+                    android:padding="8dp"
+                    app:buttonTint="@color/checkbox"/>
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/rbtFemenino"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="Femenino"
+                    android:layout_weight="1"
+                    android:button="@drawable/radio"
+                    android:padding="8dp"
+                    app:buttonTint="@color/checkbox"/>
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/rbNinguno"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="Prefiero no decirlo"
+                    android:checked="true"
+                    android:layout_weight="1"
+                    android:button="@drawable/radio"
+                    android:padding="8dp"
+                    app:buttonTint="@color/checkbox"/>
+
+            </RadioGroup>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilCorreo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Correo"
+                android:layout_marginTop="8dp"
+                android:layout_marginHorizontal="16dp"
+                app:suffixTextAppearance="@style/input"
+                app:suffixText="\@cibertec.edu.pe">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tietCorreo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:inputType="text"
+                    style="@style/input"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilClave"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Contraseña"
+                android:layout_marginTop="16dp"
+                android:layout_marginHorizontal="16dp"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/plomo">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tietClave"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:inputType="textPassword"
+                    style="@style/input"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/chkTyc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Acepto los términos y condiciones y la política de privacidad de Cibertec"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+                android:button="@drawable/checkbox"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:layout_marginEnd="16dp"
+                app:buttonTint="@color/checkbox"
+                style="@style/output"/>
+
+            <Button
+                android:id="@+id/btnGuardar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Guardar datos"
+                android:layout_marginTop="16dp"
+                style="@style/boton"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

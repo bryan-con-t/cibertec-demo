@@ -6,32 +6,70 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ListaComprasActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:gravity="center"
         android:padding="16dp">
 
-        <EditText
-            android:id="@+id/etProducto"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Escribe un producto"
-            android:inputType="text" />
-
-        <Button
-            android:id="@+id/btnAgregar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Agregar" />
+            android:text="Lista de compras"
+            style="@style/titulo"/>
 
         <ListView
             android:id="@+id/lvCompras"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btnHistorial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ver historial"
+            android:layout_marginTop="16dp"
+            style="@style/boton"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="16dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilProducto"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tietProducto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Ingresa un producto"
+                    android:inputType="text"
+                    style="@style/input"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageView
+                android:id="@+id/ivAgregar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_guardar"
+                android:background="@drawable/elipse"
+                android:padding="16dp"
+                android:layout_marginStart="16dp"
+                app:tint="@color/azul2"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

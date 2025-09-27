@@ -5,24 +5,20 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.adapter.HistorialAdapter
+import com.example.myapplication.entity.Compra
 
-class RegistroActivity : AppCompatActivity() {
-//    var tv1 : TextView ?= null;
+class HistorialActivity : AppCompatActivity() {
+    private lateinit var rvHistorial : RecyclerView
+    private lateinit var historialAdapter: HistorialAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_registro)
 
-//        tv1 = findViewById(R.id.tv1)
-//
-//        val intent = this.intent
-//        if (intent == null) {
-//            Log.i("TAG", "La activity no se ha llamado mediante un intent")
-//        } else {
-//            val nombres = intent.getStringExtra("nombres")
-//            tv1?.text = nombres
-//            Log.i("TAG", "" + nombres)
-//        }
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_historial)
 
         // Hace que el teclado del dispositivo no tape a los Views (EditText, TextInputEditText, etc)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -36,5 +32,18 @@ class RegistroActivity : AppCompatActivity() {
             )
             insets
         }
+
+        rvHistorial = findViewById<RecyclerView>(R.id.rvHistorial)
+
+        // Datos de prueba
+        val compras = listOf(
+            Compra("Leche", 2, "27/09/2025"),
+            Compra("Pan", 6, "26/09/2025"),
+            Compra("Huevos", 12, "25/09/2025")
+        )
+
+        historialAdapter = HistorialAdapter(compras)
+        rvHistorial.layoutManager = LinearLayoutManager(this)
+        rvHistorial.adapter = historialAdapter
     }
 }

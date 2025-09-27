@@ -1,5 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="primary">#7180BC</color>
+    <color name="secondary">#F9C04A</color>
+    <color name="accent">#43527A</color>
+    <color name="primaryDark">#133260</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="ripple">#BFFFFFFF</color>
+    <color name="amarillo1">#EAA62D</color>
+    <color name="amarillo2">#F9C04A</color>
+    <color name="azul1">#04398E</color>
+    <color name="azul2">#133260</color>
+    <color name="beige1">#FFDDA1</color>
+    <color name="beige2">#FFF1DC</color>
+    <color name="celeste1">#9BC5FF</color>
+    <color name="celeste2">#A6D1FF</color>
+    <color name="celeste3">#B8D8FF</color>
+    <color name="celeste4">#C5DFFF</color>
+    <color name="celeste5">#DEF6FC</color>
+    <color name="marron1">#7F6674</color>
+    <color name="marron2">#937A89</color>
+    <color name="marron3">#BC8D66</color>
+    <color name="marron4">#CEA282</color>
+    <color name="marron5">#D6A47F</color>
+    <color name="morado1">#43527A</color>
+    <color name="morado2">#5E7296</color>
+    <color name="morado3">#7180BC</color>
+    <color name="morado4">#7782BB</color>
+    <color name="morado5">#93A3D8</color>
+    <color name="morado6">#99A4D6</color>
+    <color name="naranja1">#ED1C24</color>
+    <color name="naranja2">#F24133</color>
+    <color name="naranja3">#FF5741</color>
+    <color name="naranja4">#FF8103</color>
+    <color name="naranja5">#FF9D4D</color>
+    <color name="plomo">#B3B3B3</color>
+    <color name="rosa">#FF908A</color>
+    <color name="turquesa">#589FFF</color>
+    <color name="verde1">#83D689</color>
+    <color name="verde2">#B5F4B8</color>
 </resources>

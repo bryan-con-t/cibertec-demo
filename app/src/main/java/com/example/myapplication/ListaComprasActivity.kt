@@ -1,9 +1,11 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.ListView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -11,11 +13,13 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.textfield.TextInputEditText
 
 class ListaComprasActivity : AppCompatActivity() {
-    private lateinit var etProducto: EditText
-    private lateinit var btnAgregar: Button
+    private lateinit var tietProducto: TextInputEditText
+    private lateinit var ivAgregar: ImageView
     private lateinit var lvCompras: ListView
+    private lateinit var btnHistorial : Button
 
     // Lista en memoria
     private val listaCompras = mutableListOf<String>()
@@ -26,9 +30,10 @@ class ListaComprasActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_lista_compras)
 
-        etProducto = findViewById(R.id.etProducto)
-        btnAgregar = findViewById(R.id.btnAgregar)
+        tietProducto = findViewById(R.id.tietProducto)
+        ivAgregar = findViewById(R.id.ivAgregar)
         lvCompras = findViewById(R.id.lvCompras)
+        btnHistorial = findViewById(R.id.btnHistorial)
 
         // Inicializar adaptador
         adapter = ArrayAdapter(
@@ -39,12 +44,12 @@ class ListaComprasActivity : AppCompatActivity() {
         lvCompras.adapter = adapter
 
         // Evento: agregar producto
-        btnAgregar.setOnClickListener {
-            val producto = etProducto.text.toString().trim()
+        ivAgregar.setOnClickListener {
+            val producto = tietProducto.text.toString().trim()
             if (producto.isNotEmpty()) {
                 listaCompras.add(producto)
                 adapter.notifyDataSetChanged()
-                etProducto.text.clear()
+                tietProducto.text?.clear()
             } else {
                 Toast.makeText(this, "Escribe un producto", Toast.LENGTH_SHORT).show()
             }
@@ -61,21 +66,18 @@ class ListaComprasActivity : AppCompatActivity() {
             val producto = listaCompras[position]
 
             // Opciones para el menú
-            val opciones = arrayOf("Ver detalles", "Eliminar", "Marcar como comprado")
+            val opciones = arrayOf("Eliminar", "Marcar como comprado")
 
             AlertDialog.Builder(this)
                 .setTitle("Opciones para $producto")
                 .setItems(opciones) { _, which ->
                     when (which) {
                         0 -> {
-                            Toast.makeText(this, "Detalles de $producto", Toast.LENGTH_SHORT).show()
-                        }
-                        1 -> {
                             listaCompras.removeAt(position)
                             adapter.notifyDataSetChanged()
                             Toast.makeText(this, "$producto eliminado", Toast.LENGTH_SHORT).show()
                         }
-                        2 -> {
+                        1 -> {
                             Toast.makeText(this, "$producto marcado como comprado", Toast.LENGTH_SHORT).show()
                         }
                     }
@@ -86,9 +88,20 @@ class ListaComprasActivity : AppCompatActivity() {
             true // Para indicar que el clic largo fue manejado
         }
 
+        btnHistorial.setOnClickListener {
+            startActivity(Intent(this, HistorialActivity::class.java))
+        }
+
+        // Hace que el teclado del dispositivo no tape a los Views (EditText, TextInputEditText, etc)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val imeInsets = insets.getInsets(WindowInsetsCompat.Type.ime())
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            v.setPadding(
+                systemBars.left,
+                systemBars.top,
+                systemBars.right,
+                maxOf(systemBars.bottom, imeInsets.bottom)
+            )
             insets
         }
     }
