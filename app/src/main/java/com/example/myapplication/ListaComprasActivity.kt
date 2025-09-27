@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.ListView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
@@ -61,30 +62,69 @@ class ListaComprasActivity : AppCompatActivity() {
             Toast.makeText(this, "Seleccionaste: $producto", Toast.LENGTH_SHORT).show()
         }
 
-        // Evento: clic largo para eliminar producto
+        // Evento: clic largo para eliminar producto con Dialog Nativo
+//        lvCompras.setOnItemLongClickListener { _, _, position, _ ->
+//            val producto = listaCompras[position]
+//
+//            // Opciones para el menú
+//            val opciones = arrayOf("Eliminar", "Marcar como comprado")
+//
+//            AlertDialog.Builder(this)
+//                .setTitle("Opciones para $producto")
+//                .setItems(opciones) { _, which ->
+//                    when (which) {
+//                        0 -> {
+//                            listaCompras.removeAt(position)
+//                            adapter.notifyDataSetChanged()
+//                            Toast.makeText(this, "$producto eliminado", Toast.LENGTH_SHORT).show()
+//                        }
+//                        1 -> {
+//                            Toast.makeText(this, "$producto marcado como comprado", Toast.LENGTH_SHORT).show()
+//                        }
+//                    }
+//                }
+//                .setNegativeButton("Cancelar", null)
+//                .show()
+//
+//            true // Para indicar que el clic largo fue manejado
+//        }
+
+        // Evento: clic largo para eliminar producto con Dialog Personalizado
         lvCompras.setOnItemLongClickListener { _, _, position, _ ->
             val producto = listaCompras[position]
 
-            // Opciones para el menú
-            val opciones = arrayOf("Eliminar", "Marcar como comprado")
+            // Inflar el layout personalizado
+            val dialogView = layoutInflater.inflate(R.layout.dialog_opciones, null)
 
-            AlertDialog.Builder(this)
-                .setTitle("Opciones para $producto")
-                .setItems(opciones) { _, which ->
-                    when (which) {
-                        0 -> {
-                            listaCompras.removeAt(position)
-                            adapter.notifyDataSetChanged()
-                            Toast.makeText(this, "$producto eliminado", Toast.LENGTH_SHORT).show()
-                        }
-                        1 -> {
-                            Toast.makeText(this, "$producto marcado como comprado", Toast.LENGTH_SHORT).show()
-                        }
-                    }
-                }
-                .setNegativeButton("Cancelar", null)
-                .show()
+            val tvTitulo = dialogView.findViewById<TextView>(R.id.tvTitulo)
+            val btnEliminar = dialogView.findViewById<Button>(R.id.btnEliminar)
+            val btnMarcar = dialogView.findViewById<Button>(R.id.btnMarcar)
+            val btnCancelar = dialogView.findViewById<Button>(R.id.btnCancelar)
 
+            tvTitulo.text = "Opciones para $producto"
+
+            val dialog = AlertDialog.Builder(this)
+                .setView(dialogView)
+                .create()
+
+            // Acciones de botones
+            btnEliminar.setOnClickListener {
+                listaCompras.removeAt(position)
+                adapter.notifyDataSetChanged()
+                Toast.makeText(this, "$producto eliminado", Toast.LENGTH_SHORT).show()
+                dialog.dismiss()
+            }
+
+            btnMarcar.setOnClickListener {
+                Toast.makeText(this, "$producto marcado como comprado", Toast.LENGTH_SHORT).show()
+                dialog.dismiss()
+            }
+
+            btnCancelar.setOnClickListener {
+                dialog.dismiss()
+            }
+
+            dialog.show()
             true // Para indicar que el clic largo fue manejado
         }
 

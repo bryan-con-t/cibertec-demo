@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tvTitulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Opciones"
+        android:layout_marginBottom="16dp"
+        style="@style/titulo"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnEliminar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Eliminar de la lista"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/naranja1"
+        app:icon="@drawable/ic_delete"
+        style="@style/boton"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnMarcar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Marcar como comprado"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/verde1"
+        app:icon="@drawable/ic_checked"
+        style="@style/boton"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCancelar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cancelar"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/amarillo2"
+        app:icon="@drawable/ic_cancelar"
+        style="@style/boton"/>
+
+</LinearLayout>
