@@ -33,7 +33,7 @@ class HistorialActivity : AppCompatActivity() {
             insets
         }
 
-        rvHistorial = findViewById<RecyclerView>(R.id.rvHistorial)
+        rvHistorial = findViewById(R.id.rvHistorial)
 
         // Datos de prueba
         val compras = listOf(
@@ -42,8 +42,11 @@ class HistorialActivity : AppCompatActivity() {
             Compra("Huevos", 12, "25/09/2025")
         )
 
+        // Inicializa el adaptador
         historialAdapter = HistorialAdapter(compras)
+        // Orientación del adaptador
         rvHistorial.layoutManager = LinearLayoutManager(this)
+        // Asigna el adaptador al RecyclerView
         rvHistorial.adapter = historialAdapter
     }
 }

@@ -38,31 +38,37 @@ class ListaComprasActivity : AppCompatActivity() {
 
         // Inicializar adaptador
         adapter = ArrayAdapter(
-            this,
-            android.R.layout.simple_list_item_1,
-            listaCompras
+            this, // Activity actual
+            android.R.layout.simple_list_item_1, // Diseño de cada elemento de lista
+            listaCompras // Datos a utilizar
         )
-        lvCompras.adapter = adapter
+        lvCompras.adapter = adapter // Asignamos adaptador a ListView
 
         // Evento: agregar producto
         ivAgregar.setOnClickListener {
-            val producto = tietProducto.text.toString().trim()
-            if (producto.isNotEmpty()) {
-                listaCompras.add(producto)
-                adapter.notifyDataSetChanged()
-                tietProducto.text?.clear()
-            } else {
+            val producto = tietProducto.text.toString().trim() // Obtenemos el texto ingresado
+            if (producto.isNotEmpty()) { // Si NO está vacío
+                listaCompras.add(producto) // Agrega el texto a la lista
+                adapter.notifyDataSetChanged() // Avisa al adaptador que se agregó un elemento
+                tietProducto.text?.clear() // Limpia el contenido de la caja de texto
+            } else { // Si está vacío muestra un mensaje al usuario
                 Toast.makeText(this, "Escribe un producto", Toast.LENGTH_SHORT).show()
             }
         }
 
         // Evento: clic en producto de la lista
         lvCompras.setOnItemClickListener { _, _, position, _ ->
-            val producto = listaCompras[position]
-            Toast.makeText(this, "Seleccionaste: $producto", Toast.LENGTH_SHORT).show()
+            val producto = listaCompras[position] // Obtenemos el producto seleccionado
+            Toast.makeText( // Arma el mensaje a mostrar
+                this, // Activity actual
+                "Seleccionaste: $producto", //Texto a mostrar, $... es concatenación
+                Toast.LENGTH_SHORT // Duración del mensaje
+            ).show() // Muestra el mensaje
         }
 
-        // Evento: clic largo para eliminar producto con Dialog Nativo
+        /**
+         *         Evento: clic largo para eliminar producto con Dialog Nativo
+          */
 //        lvCompras.setOnItemLongClickListener { _, _, position, _ ->
 //            val producto = listaCompras[position]
 //
@@ -89,7 +95,9 @@ class ListaComprasActivity : AppCompatActivity() {
 //            true // Para indicar que el clic largo fue manejado
 //        }
 
-        // Evento: clic largo para eliminar producto con Dialog Personalizado
+        /**
+         *         Evento: clic largo para eliminar producto con Dialog Personalizado
+          */
         lvCompras.setOnItemLongClickListener { _, _, position, _ ->
             val producto = listaCompras[position]
 
