@@ -6,37 +6,35 @@
     android:id="@+id/dlayMenu"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
-    <LinearLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:background="@color/white">
+
+        <FrameLayout
+            android:id="@+id/flayContenedor"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
         <ImageView
             android:id="@+id/ivMenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_menu"
-            android:layout_marginTop="40dp"
-            android:layout_marginHorizontal="16dp"
+            android:src="@drawable/ic_sandwich"
+            android:layout_gravity="top|start"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="16dp"
             app:tint="@color/black"/>
-        
-        <FrameLayout
-            android:id="@+id/contenedorFragments"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
 
-    </LinearLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nvMenu"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/menu_header"
-        app:menu="@menu/menu" />
+        app:menu="@menu/menu"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>

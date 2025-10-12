@@ -6,10 +6,8 @@ import androidx.activity.enableEdgeToEdge
 import com.google.android.material.navigation.NavigationView
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
-import com.example.myapplication.ui.EstadisticasFragment
+import com.example.myapplication.ui.HistorialFragment
 import com.example.myapplication.ui.InicioFragment
 import com.example.myapplication.ui.PerfilFragment
 
@@ -39,23 +37,10 @@ class InicioActivity : AppCompatActivity() {
             // Maneja las selecciones
             when (menuItem.itemId) {
                 R.id.itInicio -> replaceFragment(InicioFragment())
-                R.id.itEstadisticas -> replaceFragment(EstadisticasFragment())
+                R.id.itHistorial -> replaceFragment(HistorialFragment())
                 R.id.itPerfil -> replaceFragment(PerfilFragment())
             }
             true
-        }
-
-        // Hace que el teclado del dispositivo no tape a los Views (EditText, TextInputEditText, etc)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.dlayMenu)) { v, insets ->
-            val imeInsets = insets.getInsets(WindowInsetsCompat.Type.ime())
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(
-                systemBars.left,
-                systemBars.top,
-                systemBars.right,
-                maxOf(systemBars.bottom, imeInsets.bottom)
-            )
-            insets
         }
 
         replaceFragment(InicioFragment())
@@ -63,7 +48,7 @@ class InicioActivity : AppCompatActivity() {
 
     private fun replaceFragment(fragment : Fragment) {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.contenedorFragments, fragment)
+            .replace(R.id.flayContenedor, fragment)
             .commit()
     }
 }

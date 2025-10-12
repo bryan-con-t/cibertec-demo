@@ -9,22 +9,19 @@
 
         <item
             android:id="@+id/itInicio"
-            android:icon="@drawable/ic_inicio"
-            android:title="Inicio" />
+            android:title="Inicio"
+            android:icon="@drawable/ic_inicio"/>
 
         <item
-            android:id="@+id/itEstadisticas"
-            android:icon="@drawable/ic_barras"
-            android:title="Estadísticas" />
+            android:id="@+id/itHistorial"
+            android:title="Historial de compras"
+            android:icon="@drawable/ic_barras"/>
 
         <item
             android:id="@+id/itPerfil"
-            android:icon="@drawable/ic_perfil"
-            android:title="Perfil" />
+            android:title="Mi perfil"
+            android:icon="@drawable/ic_perfil"/>
 
     </group>
 
-
 </menu>
-
-

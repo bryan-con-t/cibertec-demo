@@ -24,9 +24,6 @@
             android:name=".HistorialActivity"
             android:exported="false" />
         <activity
-            android:name=".ListaComprasActivity"
-            android:exported="false" />
-        <activity
             android:name=".RegistroActivity"
             android:exported="false" />
         <activity

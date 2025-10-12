@@ -25,8 +25,8 @@ class AccesoActivity : AppCompatActivity() {
 
     //Lista simulada de usuarios (por ahora solo memoria)
     private val listaUsuarios = mutableListOf(
-        Usuario(1, "Bryant Alejandro", "Yacila Valenzuela", "pbyacila@cibertec.edu.pe", "0000"),
-        Usuario(2, "Nombres", "Apellidos", "prueba@cibertec.edu.pe", "1234")
+        Usuario(1, "72608801", "Yacila", "Valenzuela", "Bryant Alejandro", "+51936794594", "M", "pbyacila@cibertec.edu.pe", "0000"),
+        Usuario(2, "00000000", "Apellido Paterno", "Apellido materno", "Nombres", "+51999999999", "M", "correo@prueba.com", "1234")
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -102,7 +102,7 @@ class AccesoActivity : AppCompatActivity() {
 
             if (usuarioEncontrado != null) {
                 Toast.makeText(this, "Bienvenido ${usuarioEncontrado.nombres}", Toast.LENGTH_LONG).show()
-                startActivity(Intent(this, ListaComprasActivity::class.java))
+                startActivity(Intent(this, InicioActivity::class.java))
             } else {
                 Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_LONG).show()
             }

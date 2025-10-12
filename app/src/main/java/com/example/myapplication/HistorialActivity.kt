@@ -7,18 +7,31 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.adapter.HistorialAdapter
-import com.example.myapplication.entity.Compra
+import com.example.myapplication.adapters.HistorialAdapter
+import com.example.myapplication.entity.ListaCompras
 
 class HistorialActivity : AppCompatActivity() {
     private lateinit var rvHistorial : RecyclerView
-    private lateinit var historialAdapter: HistorialAdapter
+    private lateinit var historialAdapter : HistorialAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         enableEdgeToEdge()
         setContentView(R.layout.activity_historial)
+
+        rvHistorial = findViewById(R.id.rvCompras)
+        rvHistorial.layoutManager = LinearLayoutManager(this)
+//        rvHistorial.layoutManager = GridLayoutManager(this, 2)
+//        val listacompras = listOf(
+//            ListaCompras("Pan", 20, 2, "07/10/2025"),
+//            ListaCompras("Leche", 10, 5, "04/10/2025"),
+//            ListaCompras("Huevos", 5, 70, "04/10/2025"),
+//            ListaCompras("Azúcar", 1, 1, "02/10/2025"),
+//            ListaCompras("Queso", 3, 4, "02/10/2025")
+//        )
+//        historialAdapter = HistorialAdapter(listacompras)
+        rvHistorial.adapter = historialAdapter
 
         // Hace que el teclado del dispositivo no tape a los Views (EditText, TextInputEditText, etc)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -32,21 +45,5 @@ class HistorialActivity : AppCompatActivity() {
             )
             insets
         }
-
-        rvHistorial = findViewById(R.id.rvHistorial)
-
-        // Datos de prueba
-        val compras = listOf(
-            Compra("Leche", 2, "27/09/2025"),
-            Compra("Pan", 6, "26/09/2025"),
-            Compra("Huevos", 12, "25/09/2025")
-        )
-
-        // Inicializa el adaptador
-        historialAdapter = HistorialAdapter(compras)
-        // Orientación del adaptador
-        rvHistorial.layoutManager = LinearLayoutManager(this)
-        // Asigna el adaptador al RecyclerView
-        rvHistorial.adapter = historialAdapter
     }
 }

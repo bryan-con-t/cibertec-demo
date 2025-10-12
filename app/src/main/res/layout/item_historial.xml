@@ -1,43 +1,59 @@
-<com.google.android.material.card.MaterialCardView
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="16dp"
-    android:layout_marginVertical="8dp"
+    android:layout_margin="8dp"
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="16dp"
-    app:cardElevation="4dp">
+    app:cardElevation="8dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:layout_margin="8dp"
+        android:gravity="center">
 
-        <TextView
-            android:id="@+id/tvProducto"
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_margin="8dp">
+
+            <TextView
+                android:id="@+id/tvIdLista"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lista #001"
+                style="@style/subtitulo"/>
+
+            <TextView
+                android:id="@+id/tvSubtotal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Subtotal: S/ 20"
+                style="@style/output"/>
+
+            <TextView
+                android:id="@+id/tvFecha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fecha: 07/10/2025"
+                android:textColor="@color/plomo"
+                style="@style/output"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/ivMenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Producto"
-            android:textSize="16sp"
-            style="@style/output"/>
-
-        <TextView
-            android:id="@+id/tvCantidad"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cantidad: 2"
-            style="@style/output"/>
-
-        <TextView
-            android:id="@+id/tvFecha"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Comprado el: 27/09/2025"
-            android:fontFamily="@font/poppins_light"
-            style="@style/output"/>
+            android:src="@drawable/ic_menu"
+            app:tint="@color/black"/>
 
     </LinearLayout>
 
-</com.google.android.material.card.MaterialCardView>
+</androidx.cardview.widget.CardView>

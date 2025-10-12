@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
-    tools:context=".HistorialActivity">
+    android:padding="16dp">
 
     <TextView
         android:id="@+id/tvTitulo"
@@ -23,7 +23,7 @@
         style="@style/titulo"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvCompras"
+        android:id="@+id/rvHistorial"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
