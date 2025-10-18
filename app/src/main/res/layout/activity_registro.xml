@@ -175,7 +175,7 @@
                     app:buttonTint="@color/checkbox"/>
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
-                    android:id="@+id/rbNinguno"
+                    android:id="@+id/rbtNinguno"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:text="Prefiero no decirlo"
