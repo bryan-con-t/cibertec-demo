@@ -20,6 +20,7 @@ import androidx.work.WorkManager
 import com.example.myapplication.ui.HistorialFragment
 import com.example.myapplication.ui.InicioFragment
 import com.example.myapplication.ui.PerfilFragment
+import com.example.myapplication.ui.ProductsFragment
 import com.example.myapplication.workers.RecordatorioWorker
 import java.util.concurrent.TimeUnit
 
@@ -54,6 +55,7 @@ class InicioActivity : AppCompatActivity() {
                 R.id.itInicio -> replaceFragment(InicioFragment())
                 R.id.itHistorial -> replaceFragment(HistorialFragment())
                 R.id.itPerfil -> replaceFragment(PerfilFragment())
+                R.id.itProductos -> replaceFragment(ProductsFragment())
             }
             true
         }

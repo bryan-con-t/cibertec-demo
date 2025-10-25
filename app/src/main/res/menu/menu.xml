@@ -22,6 +22,11 @@
             android:title="Mi perfil"
             android:icon="@drawable/ic_perfil"/>
 
+        <item
+            android:id="@+id/itProductos"
+            android:title="Productos API"
+            android:icon="@drawable/ic_unchecked"/>
+
     </group>
 
 </menu>
