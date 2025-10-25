@@ -58,7 +58,12 @@ class InicioActivity : AppCompatActivity() {
             true
         }
 
-        replaceFragment(InicioFragment())
+        val fragmentoNotif = intent.getStringExtra("mostrarFragmento")
+        if (fragmentoNotif == "historial") {
+            replaceFragment(HistorialFragment())
+        } else {
+            replaceFragment(InicioFragment())
+        }
     }
 
     private fun replaceFragment(fragment : Fragment) {

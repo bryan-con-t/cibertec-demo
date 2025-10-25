@@ -2,12 +2,15 @@ package com.example.myapplication.workers
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.work.Worker
 import androidx.work.WorkerParameters
+import com.example.myapplication.InicioActivity
 import com.example.myapplication.R
 
 class RecordatorioWorker(context : Context, params : WorkerParameters) : Worker(context, params) {
@@ -26,12 +29,25 @@ class RecordatorioWorker(context : Context, params : WorkerParameters) : Worker(
             manager?.createNotificationChannel(canal)
         }
 
+        // Intent para abrir InicioActivity mostrando Historial
+        val intent = Intent(applicationContext, InicioActivity::class.java)
+        intent.putExtra("mostrarFragmento", "historial")
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+        val pendingIntent = PendingIntent.getActivity(
+            applicationContext,
+            0,
+            intent,
+            PendingIntent.FLAG_UPDATE_CURRENT or (PendingIntent.FLAG_IMMUTABLE)
+        )
+
         // Crear la notificación
         val builder = NotificationCompat.Builder(applicationContext, idCanal)
             .setSmallIcon(R.mipmap.ic_launcher)
             .setContentTitle("Lista de compras")
             .setContentText("¡No olvides revisar tu lista de compras hoy!")
             .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setContentIntent(pendingIntent)
             .setAutoCancel(true)
         val notificationManager = NotificationManagerCompat.from(applicationContext)
 
