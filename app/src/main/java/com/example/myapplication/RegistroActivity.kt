@@ -161,10 +161,10 @@ class RegistroActivity : AppCompatActivity() {
                 id
             }
             if (resultado > 0) {
-                Toast.makeText(this@RegistroActivity, "Usuario registrado (#${String.format("%.2f", resultado)}", Toast.LENGTH_SHORT)
+                Toast.makeText(this@RegistroActivity, "Usuario registrado (#${String.format("%03d", resultado)}", Toast.LENGTH_SHORT).show()
                 finish()
             } else {
-                Toast.makeText(this@RegistroActivity, "Error al registrar usuario", Toast.LENGTH_SHORT)
+                Toast.makeText(this@RegistroActivity, "Error al registrar usuario", Toast.LENGTH_SHORT).show()
             }
         }
     }
