@@ -56,6 +56,7 @@ class InicioActivity : AppCompatActivity() {
                 R.id.itHistorial -> replaceFragment(HistorialFragment())
                 R.id.itPerfil -> replaceFragment(PerfilFragment())
                 R.id.itProductos -> replaceFragment(ProductsFragment())
+                R.id.itMapa -> replaceFragment(MapsFragment())
             }
             true
         }

@@ -25,7 +25,12 @@
         <item
             android:id="@+id/itProductos"
             android:title="Productos API"
-            android:icon="@drawable/ic_unchecked"/>
+            android:icon="@drawable/ic_carrito"/>
+
+        <item
+            android:id="@+id/itMapa"
+            android:title="Mapa"
+            android:icon="@drawable/ic_location"/>
 
     </group>
 
