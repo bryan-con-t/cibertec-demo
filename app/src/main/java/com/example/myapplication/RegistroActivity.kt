@@ -3,6 +3,9 @@ package com.example.myapplication
 import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.RadioButton
@@ -14,10 +17,18 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.myapplication.data.AppDatabaseHelper
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.google.firebase.Firebase
+import com.google.firebase.FirebaseException
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.PhoneAuthCredential
+import com.google.firebase.auth.PhoneAuthOptions
+import com.google.firebase.auth.PhoneAuthProvider
+import com.google.firebase.database.database
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.concurrent.TimeUnit
 
 class RegistroActivity : AppCompatActivity() {
     private lateinit var tietDni : TextInputEditText
@@ -67,9 +78,9 @@ class RegistroActivity : AppCompatActivity() {
 
         btnGuardar.setOnClickListener {
             if (chkTyc.isChecked) {
-                registrarUsuario()
+                registrarUsuarioFirebase()
             } else {
-                Toast.makeText(this, "Tiene que aceptar los términos y condiciones", Toast.LENGTH_SHORT)
+                Toast.makeText(this, "Tiene que aceptar los términos y condiciones", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -87,7 +98,7 @@ class RegistroActivity : AppCompatActivity() {
         }
     }
 
-    private fun registrarUsuario() {
+    private fun registrarUsuarioSQLite() {
         var error = false
         var sexo = "N"
         if (tietDni.text.toString().trim().isEmpty()) {
@@ -153,7 +164,7 @@ class RegistroActivity : AppCompatActivity() {
                     put("nombres", tietNombres.text.toString().trim())
                     put("celular", tietCelular.text.toString().trim())
                     put("sexo", sexo)
-                    put("correo", tietCorreo.text.toString().trim())
+                    put("correo", tietCorreo.text.toString().trim() + "@cibertec.edu.pe")
                     put("clave", tietClave.text.toString().trim())
                 }
                 val id = db.insert("usuario", null, valores)
@@ -167,5 +178,98 @@ class RegistroActivity : AppCompatActivity() {
                 Toast.makeText(this@RegistroActivity, "Error al registrar usuario", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun registrarUsuarioFirebase() {
+        var error = false
+        var sexo = "N"
+        val dni = tietDni.text.toString().trim()
+        val apellidoPaterno = tietApellidoPaterno.text.toString().trim()
+        val apellidoMaterno = tietApellidoMaterno.text.toString().trim()
+        val nombres = tietNombres.text.toString().trim()
+        val celular = tietCelular.text.toString().trim()
+        val correo = tietCorreo.text.toString().trim()
+        val clave = tietClave.text.toString().trim()
+
+        if (dni.isEmpty()) {
+            tilDni.error = "Ingrese DNI"
+            error = true
+        } else {
+            tilDni.error = null
+        }
+        if (apellidoPaterno.isEmpty()) {
+            tilApellidoPaterno.error = "Ingrese apellido paterno"
+            error = true
+        } else {
+            tilApellidoPaterno.error = null
+        }
+        if (apellidoMaterno.isEmpty()) {
+            tilApellidoMaterno.error = "Ingrese apellido materno"
+            error = true
+        } else {
+            tilApellidoMaterno.error = null
+        }
+        if (nombres.isEmpty()) {
+            tilNombres.error = "Ingrese nombres"
+            error = true
+        } else {
+            tilNombres.error = null
+        }
+        if (celular.isEmpty()) {
+            tilCelular.error = "Ingrese celular"
+            error = true
+        } else {
+            tilCelular.error = null
+        }
+        if (correo.isEmpty()) {
+            tilCorreo.error = "Ingrese correo"
+            error = true
+        } else {
+            tilCorreo.error = null
+        }
+        if (clave.isEmpty()) {
+            tilClave.error = "Ingrese contraseña"
+            error = true
+        } else {
+            tilClave.error = null
+        }
+        sexo = when {
+            rbtMasculino.isChecked -> "M"
+            rbtFemenino.isChecked -> "F"
+            else -> "N"
+        }
+        if (error) {
+            return
+        }
+
+        // Firebase Auth
+        val auth = FirebaseAuth.getInstance()
+        auth.createUserWithEmailAndPassword(correo + "@cibertec.edu.pe", clave)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val uid = auth.currentUser!!.uid
+                    val usuarioMap = mapOf(
+                        "dni" to dni,
+                        "apellido_paterno" to apellidoPaterno,
+                        "apellido_materno" to apellidoMaterno,
+                        "nombres" to nombres,
+                        "celular" to celular,
+                        "sexo" to sexo,
+                        "correo" to correo + "@cibertec.edu.pe"
+                    )
+                    val db = Firebase.database.reference
+                    db.child("usuarios").child(uid).setValue(usuarioMap)
+                        .addOnSuccessListener {
+                            Toast.makeText(this, "Usuario registrado correctamente", Toast.LENGTH_SHORT).show()
+                            startActivity(Intent(this, InicioActivity::class.java))
+                            finish()
+                        }
+                        .addOnFailureListener {
+                            Toast.makeText(this, "Error guardando datos", Toast.LENGTH_SHORT).show()
+                        }
+                } else {
+                    Log.e("Error", "${task.exception?.message}")
+                }
+            }
     }
 }

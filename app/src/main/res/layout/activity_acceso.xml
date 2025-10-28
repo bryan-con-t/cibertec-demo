@@ -98,6 +98,28 @@
                 app:rippleColor="@color/ripple"
                 style="@style/boton"/>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="24dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="O acceder con:"
+                    android:layout_marginEnd="16dp"
+                    style="@style/output"/>
+
+                <ImageView
+                    android:id="@+id/ivGoogle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_google"/>
+
+            </LinearLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

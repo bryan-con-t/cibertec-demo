@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "642691215447",
+    "firebase_url": "https://cibertec-demo-default-rtdb.firebaseio.com",
+    "project_id": "cibertec-demo",
+    "storage_bucket": "cibertec-demo.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:642691215447:android:199218a6b9bbc1993db312",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "642691215447-vqe5craeevo736b1lhrqut9n5rgfh3d8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.myapplication",
+            "certificate_hash": "7fadd53f08f785e51c2357479c62e74858926c15"
+          }
+        },
+        {
+          "client_id": "642691215447-2un2r5g4hk8neqsrbsfd4h88dib5r243.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9Z6b3QeKPphAH2Xr8qPBmewQZWKKTUhQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "642691215447-2un2r5g4hk8neqsrbsfd4h88dib5r243.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

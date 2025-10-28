@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id("kotlin-kapt")
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -46,6 +47,10 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.github.bumptech.glide:glide:4.15.1")
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.storage)
+    implementation(libs.firebase.database.ktx)
+    implementation("com.google.android.gms:play-services-auth:21.1.0")
     kapt("com.github.bumptech.glide:compiler:4.15.1")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
